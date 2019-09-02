@@ -14,12 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="heima_ssm" target="1.5" />
-      <module name="heima_ssm_dao" target="1.5" />
-      <module name="heima_ssm_domain" target="1.5" />
-      <module name="heima_ssm_service" target="1.5" />
-      <module name="heima_ssm_utils" target="1.5" />
-      <module name="heima_ssm_web" target="1.5" />
+      <module name="heima_ssm" target="1.8" />
+      <module name="heima_ssm_dao" target="1.8" />
+      <module name="heima_ssm_domain" target="1.8" />
+      <module name="heima_ssm_service" target="1.8" />
+      <module name="heima_ssm_utils" target="1.8" />
+      <module name="heima_ssm_web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
