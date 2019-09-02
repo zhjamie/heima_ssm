@@ -18,4 +18,14 @@ public class OrdersServiceImpl implements IOrdersService {
     private IOrdersDao ordersDao;
 
 
+    @Override
+    public List<Orders> findAll(Integer page,Integer size) throws Exception {
+        PageHelper.startPage(page,size);
+        return ordersDao.findAll();
+    }
+
+    @Override
+    public Orders findById(String id) throws Exception {
+        return ordersDao.findById(id);
+    }
 }
