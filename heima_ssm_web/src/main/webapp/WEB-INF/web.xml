@@ -64,6 +64,7 @@
         <location>/403.jsp</location>
     </error-page>
 
+    <!--访问时默认进入的首页地址-->
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
         <welcome-file>index.htm</welcome-file>
