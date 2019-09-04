@@ -13,12 +13,12 @@ public interface IOrdersDao {
     @Select("select * from orders")
     @Results({
             @Result(id = true,column = "id",property = "id"),
-            /*@Result(column = "ordernum",property = "orderNum"),
+            @Result(column = "ordernum",property = "orderNum"),
             @Result(column = "ordertime",property = "orderTime"),
             @Result(column = "peopelcount",property = "peopleCount"),
             @Result(column = "orderdesc",property = "orderDesc"),
             @Result(column = "paytype",property = "payType"),
-            @Result(column = "orderstatus",property = "orderStatus"),*/
+            @Result(column = "orderstatus",property = "orderStatus"),
             @Result(column = "productid",property = "product",
                     javaType = Product.class,
                     one = @One(select = "com.itheima.ssm.dao.IProductDao.findById")

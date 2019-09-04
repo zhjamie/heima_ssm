@@ -11,6 +11,8 @@ public interface IRoleDao {
     //根据用户ID查询所有角色
     @Select("select * from role where id in (select roleid from users_role where userid = #{id})")
     @Results({
+            @Result(id = true,property = "roleName",column = "rolename"),
+            @Result(property = "roleDesc",column = "roledesc"),
             @Result(property = "permissions",column = "id",
                     javaType = List.class,
                     many = @Many(select = "com.itheima.ssm.dao.IPermissionDao.findPermissionByUserId")
@@ -35,7 +37,7 @@ public interface IRoleDao {
     public List<Permission> findOthers(String id) throws Exception;
 
     //向中间表中添加角色权限对应关系
-    @Insert("insert into role_permission values (#{roleId},#{permissionId})")
+    @Insert("insert into role_permission values (#{permissionId},#{roleId})")
     public void addPermissionToRole(@Param("roleId") String roleId,@Param("permissionId") String permissionId);
 
 
