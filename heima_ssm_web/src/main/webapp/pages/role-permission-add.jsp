@@ -117,7 +117,7 @@
 									<tr>
 										<td>
 										
-										<input name="ids" type="checkbox" value="${permission.id}">
+										<input name="permissionIds" type="checkbox" value="${permission.id}">
 										
 										</td>
 										<td>${permission.id}</td>

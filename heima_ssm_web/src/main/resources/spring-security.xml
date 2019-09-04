@@ -44,6 +44,7 @@
             <!--<security:user-service>
                 <security:user name="admin" password="{noop}123" authorities="ROLE_CEO"/>
             </security:user-service>-->
+            <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
 

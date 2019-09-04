@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -18,4 +19,32 @@ public class RoleServiceImpl implements IRoleService {
     private IRoleDao roleDao;
 
 
+    @Override
+    public List<Role> findAll() throws Exception {
+        return roleDao.findAll();
+    }
+
+    @Override
+    public void save(Role role) {
+        String id = UUID.randomUUID().toString().replaceAll("-", "");
+        role.setId(id);
+        roleDao.save(role);
+    }
+
+    @Override
+    public Role findRoleById(String id) throws Exception {
+        return roleDao.findRoleById(id);
+    }
+
+    @Override
+    public List<Permission> findOthers(String id) throws Exception {
+        return roleDao.findOthers(id);
+    }
+
+    @Override
+    public void addPermissionToRole(String roleId, String[] permissionIds) {
+        for (String permissionId : permissionIds) {
+            roleDao.addPermissionToRole(roleId,permissionId);
+        }
+    }
 }
