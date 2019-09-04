@@ -1,5 +1,6 @@
 package com.itheima.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.itheima.ssm.dao.IProductDao;
 import com.itheima.ssm.domain.Product;
 import com.itheima.ssm.service.IProductService;
@@ -19,7 +20,8 @@ public class ProductServiceImpl implements IProductService{
 
 
     @Override
-    public List<Product> findAll() throws Exception {
+    public List<Product> findAll(Integer page,Integer size) throws Exception {
+        PageHelper.startPage(page,size);
         return productDao.findAll();
     }
 

@@ -24,11 +24,13 @@
     <security:http auto-config="true" use-expressions="true">
         <!-- 配置具体的拦截的规则 pattern="请求路径的规则" access="访问系统的人，必须有ROLE_USER的角色" -->
         <!--<security:intercept-url pattern="/**" access="ROLE_CEO,ROLE_HR)"/>-->
+        <!--"/**",表示多级匹配，"/*",表示一级匹配-->
         <security:intercept-url pattern="/**" access="hasAnyRole('CEO','CTO','HR','CSP')"/>
 
         <!-- 定义跳转的具体的页面 -->
         <security:form-login
-                login-page="/login.jsp" login-processing-url="/login.do"
+                login-page="/login.jsp"
+                login-processing-url="/login.do"
                 default-target-url="/index.jsp"
                 authentication-failure-url="/login.jsp?error=1"
                 authentication-success-forward-url="/pages/main.jsp"/>
@@ -44,6 +46,7 @@
             <!--<security:user-service>
                 <security:user name="admin" password="{noop}123" authorities="ROLE_CEO"/>
             </security:user-service>-->
+            <!--配置加密的方式-->
             <security:password-encoder ref="passwordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>

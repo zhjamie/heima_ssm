@@ -245,7 +245,7 @@
 								<tbody>
 
 
-									<c:forEach items="${productList}" var="product">
+									<c:forEach items="${pageInfo.list}" var="product">
 
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
@@ -320,7 +320,8 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共2 页，共14 条数据。 每页 <select class="form-control">
+								总共2 页，共14 条数据。 每页
+								<select class="form-control" id="changePageSize" onchange="changePageSize()">
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
@@ -332,15 +333,31 @@
 
 						<div class="box-tools pull-right">
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous">首页</a></li>
-								<li><a href="#">上一页</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">下一页</a></li>
-								<li><a href="#" aria-label="Next">尾页</a></li>
+								<c:if test="${pageInfo.pageNum!=1}">
+									<li>
+										<a href="${pageContext.request.contextPath}/product/findAll.do?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+									</li>
+									<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+
+								</c:if>
+
+								<c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+									<c:if test="${pageInfo.pageNum==pageNum}">
+										<li><a style="background-color: pink" href="${pageContext.request.contextPath}/product/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+									</c:if>
+									<c:if test="${pageInfo.pageNum!=pageNum}">
+										<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+									</c:if>
+
+								</c:forEach>
+
+								<c:if test="${pageInfo.pageNum!=pageInfo.pages}">
+									<li><a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+									<li>
+										<a href="${pageContext.request.contextPath}/product/findAll.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+									</li>
+
+								</c:if>
 							</ul>
 						</div>
 
@@ -460,6 +477,14 @@
 	<script
 		src="${pageContext.request.contextPath}/plugins/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 	<script>
+        function changePageSize() {
+            //获取下拉框的值
+            var pageSize = $("#changePageSize").val();
+
+            //向服务器发送请求，改变没页显示条数
+            location.href = "${pageContext.request.contextPath}/product/findAll.do?page=1&size="
+                + pageSize;
+        }
 		$(document).ready(function() {
 			// 选择框
 			$(".select2").select2();
@@ -480,6 +505,8 @@
 		}
 
 		$(document).ready(function() {
+
+            $("#changePageSize").val("${pageInfo.pageSize}");
 
 			// 激活导航位置
 			setSidebarActive("admin-datalist");

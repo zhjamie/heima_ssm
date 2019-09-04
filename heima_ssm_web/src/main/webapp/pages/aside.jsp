@@ -11,7 +11,9 @@
                      class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>xxx</p>
+                <p>
+                    <security:authentication property="principal.username"/>
+                </p>
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>
@@ -32,10 +34,14 @@
             </a>
                 <ul class="treeview-menu">
 
-                    <li><a
-                            href="${pageContext.request.contextPath}/user/findAll.do"> <i
-                            class="fa fa-circle-o"></i> 用户管理
-                    </a></li>
+                    <li>
+                        <security:authorize access="hasRole('CEO')">
+                            <a
+                                    href="${pageContext.request.contextPath}/user/findAll.do"> <i
+                                    class="fa fa-circle-o"></i> 用户管理
+                            </a>
+                        </security:authorize>
+                    </li>
                     <li><a
                             href="${pageContext.request.contextPath}/role/findAll.do"> <i
                             class="fa fa-circle-o"></i> 角色管理

@@ -502,6 +502,8 @@
 
 		$(document).ready(function() {
 
+		    $("#changePageSize").val("${pageInfo.pageSize}");
+
 			// 激活导航位置
 			setSidebarActive("admin-datalist");
 

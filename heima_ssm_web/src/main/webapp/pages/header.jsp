@@ -21,7 +21,7 @@
                                                        class="dropdown-toggle" data-toggle="dropdown"> <img
                         src="${pageContext.request.contextPath}/img/user3-128x128.jpg"
                         class="user-image" alt="User Image"> <span class="hidden-xs">
-							xxx
+							<security:authentication property="principal.username"/>
 					</span>
 
                 </a>
