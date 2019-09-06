@@ -52,7 +52,7 @@ public class LogAop {
     //后置通知
     @After("execution(* com.itheima.ssm.controller.*.*(..))")
     public void doAfter(JoinPoint jp) throws Exception {
-        long time = new Date().getTime()-visitTime.getTime();
+        long time = System.currentTimeMillis()-visitTime.getTime();
         String url = "";
         if(clazz!=null&&method!=null&&clazz!=LogAop.class) {
             RequestMapping classAnnotation = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
