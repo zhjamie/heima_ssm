@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,5 +20,10 @@ public class SysLogServiceImpl implements SysLogService {
         String id = UUID.randomUUID().toString().replaceAll("-", "");
         sysLog.setId(id);
         sysLogDao.save(sysLog);
+    }
+
+    @Override
+    public List<SysLog> findAll() throws Exception {
+        return sysLogDao.findAll();
     }
 }

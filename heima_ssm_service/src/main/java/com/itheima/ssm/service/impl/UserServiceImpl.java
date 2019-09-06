@@ -34,9 +34,12 @@ public class UserServiceImpl implements IUserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        User user = new User(userInfo.getUsername(),userInfo.getPassword(),
-                userInfo.getStatus()==0?false:true,true,true,true,
-                getAuthority(userInfo.getRoles()));
+        User user = new User(userInfo.getUsername(),userInfo.getPassword(),//用户名和密码
+                userInfo.getStatus()==0?false:true,//看账号是否可用
+                true,//看账号是否可用状态
+                true,//账号的凭据，MD5加密（加盐）
+                true,//账号是否被锁定
+                getAuthority(userInfo.getRoles()));//看是否有权限
         return user;
     }
 
