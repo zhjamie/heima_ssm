@@ -20,7 +20,7 @@ public class ProductController {
     private IProductService productService;
 
     @RequestMapping("/findAll.do")
-    @RolesAllowed({"CEO","CTO","HR"})
+    @RolesAllowed({"CEO"})
     public ModelAndView findAll(ModelAndView modelAndView,
                                 @RequestParam(name = "page",required = true,defaultValue = "1") Integer page,
                                 @RequestParam(name = "size",required = true,defaultValue = "5") Integer size) throws Exception {

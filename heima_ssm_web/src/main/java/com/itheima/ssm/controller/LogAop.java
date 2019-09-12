@@ -36,8 +36,9 @@ public class LogAop {
     public void doBefore(JoinPoint jp) throws NoSuchMethodException {
         visitTime = new Date();
         clazz = jp.getTarget().getClass();
+        //jp.getSignature()获取方法签名（包括修饰符、返回值、方法名称、参数等信息）
         String methodName = jp.getSignature().getName();
-        Object[] args = jp.getArgs();
+        Object[] args = jp.getArgs();//被拦截的方法中的参数
         if(args==null||args.length==0) {
             method = clazz.getMethod(methodName);
         } else {
